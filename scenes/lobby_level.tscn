@@ -1,0 +1,109 @@
+[gd_scene load_steps=12 format=3 uid="uid://dgpq6p6jv11se"]
+
+[ext_resource type="Script" path="res://scripts/lobby_level.gd" id="1_h6o38"]
+[ext_resource type="Texture2D" uid="uid://c4gwr5tawn6a7" path="res://assets/Background/Background.png" id="1_lgrdr"]
+[ext_resource type="Texture2D" uid="uid://cycory43davrk" path="res://assets/Background/Bushes-16x16.png" id="2_wimvt"]
+[ext_resource type="Texture2D" uid="uid://bwe1njosbmwni" path="res://assets/Background/TileSet-36x36.png" id="3_t71l6"]
+[ext_resource type="Texture2D" uid="uid://c6i4pfj8nwym7" path="res://assets/Background/House1.png" id="4_l5n2o"]
+[ext_resource type="Texture2D" uid="uid://c5n15m8wmqmnx" path="res://assets/Background/Tree1.png" id="5_5smsf"]
+[ext_resource type="PackedScene" uid="uid://djh8qxwiu2abp" path="res://scenes/player.tscn" id="6_gorbp"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_58pk4"]
+texture = ExtResource("2_wimvt")
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+2:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_62ho0"]
+sources/0 = SubResource("TileSetAtlasSource_58pk4")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1m3gl"]
+texture = ExtResource("3_t71l6")
+texture_region_size = Vector2i(32, 32)
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+6:3/0 = 0
+4:4/0 = 0
+6:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_nbqlu"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_1m3gl")
+
+[node name="LobbyLevel" type="Node2D"]
+script = ExtResource("1_h6o38")
+
+[node name="BackgroundSprites" type="StaticBody2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="BackgroundSprites"]
+position = Vector2(335, 227)
+scale = Vector2(2.03421, 1.948)
+texture = ExtResource("1_lgrdr")
+
+[node name="BushTileMap" type="TileMap" parent="BackgroundSprites"]
+tile_set = SubResource("TileSet_62ho0")
+format = 2
+layer_0/tile_data = PackedInt32Array(655368, 131072, 4, 720904, 131072, 5, 786440, 131072, 5, 851976, 131072, 6, 655369, 131072, 4, 720905, 131072, 5, 786441, 131072, 5, 851977, 131072, 6, 655370, 196608, 4, 720906, 196608, 6, 786442, 131072, 5, 851978, 131072, 6, 720907, 131072, 4, 786443, 131072, 5, 851979, 131072, 6, 720908, 196608, 4, 786444, 196608, 5, 851980, 196608, 6, 655367, 131072, 4, 720903, 131072, 5, 786439, 131072, 5, 851975, 131072, 5)
+layer_1/name = "Layer1"
+layer_1/tile_data = PackedInt32Array(851980, 65536, 2, 720909, 131072, 0, 786445, 131072, 2, 851981, 131072, 1, 720910, 131072, 1, 786446, 131072, 2, 851982, 131072, 2, 655375, 131072, 1, 720911, 131072, 1, 786447, 131072, 3, 851983, 131072, 3, 589840, 131072, 0, 655376, 196608, 2, 720912, 131072, 3, 786448, 131072, 3, 851984, 131072, 3, 589841, 196608, 0, 655377, 196608, 1, 720913, 131072, 1, 786449, 131072, 2, 851985, 131072, 1, 720914, 196608, 0, 786450, 196608, 2, 851986, 131072, 1, 786451, 196608, 0, 851987, 196608, 1, 851979, 65536, 0, 720908, 65536, 0, 786444, 65536, 1, 655374, 65536, 0, 589839, 65536, 0)
+
+[node name="GroundTileMap" type="TileMap" parent="BackgroundSprites"]
+tile_set = SubResource("TileSet_nbqlu")
+format = 2
+layer_0/tile_data = PackedInt32Array(524287, 65536, 1, 458752, 131072, 1, 458753, 196608, 1, 458756, 131072, 1, 458757, 131072, 1, 458754, 131072, 1, 458755, 196608, 1, 458758, 196608, 1, 458759, 131072, 1, 458760, 196608, 1, 458761, 196608, 1, 589823, 65536, 3, 786431, 65536, 3, 655359, 65536, 2, 720895, 65536, 2, 458762, 131072, 1, 851967, 65536, 2, 917503, 65536, 3, 524288, 196608, 2, 524289, 196608, 2, 589824, 196608, 2, 589825, 131072, 2, 589826, 196608, 2, 589827, 196608, 2, 589828, 196608, 2, 589829, 196608, 2, 655364, 196608, 2, 655365, 131072, 2, 524290, 196608, 2, 524291, 196608, 2, 524292, 196608, 2, 524293, 196608, 2, 524294, 196608, 2, 524295, 196608, 2, 524296, 196608, 2, 524297, 196608, 2, 589832, 196608, 2, 589833, 196608, 2, 589834, 196608, 2, 524298, 196608, 2, 655369, 131072, 2, 655370, 196608, 2, 655367, 196608, 2, 655368, 196608, 2, 589830, 196608, 2, 589831, 196608, 2, 655366, 131072, 2, 655363, 196608, 2, 655361, 196608, 2, 655362, 196608, 2, 720897, 131072, 2, 720898, 196608, 2, 786433, 131072, 2, 786434, 196608, 2, 851969, 196608, 2, 851970, 131072, 2, 851971, 196608, 2, 851972, 196608, 2, 786435, 196608, 2, 786436, 196608, 2, 786437, 196608, 2, 786438, 131072, 2, 720901, 196608, 2, 720902, 196608, 2, 720899, 196608, 2, 720900, 196608, 2, 720903, 196608, 2, 720904, 196608, 2, 720905, 131072, 2, 720906, 196608, 2, 851977, 196608, 2, 851978, 196608, 2, 851975, 196608, 2, 851976, 196608, 2, 786439, 131072, 2, 786440, 196608, 2, 786441, 196608, 2, 786442, 196608, 2, 851973, 196608, 2, 851974, 196608, 2, 655360, 196608, 2, 720896, 196608, 2, 786432, 196608, 2, 851968, 196608, 2, 393217, 327680, 1, 393218, 327680, 1, 327682, 393216, 1, 393224, 327680, 1, 327688, 393216, 1, 458763, 262144, 1, 524299, 262144, 2, 589835, 262144, 2, 720907, 262144, 2, 655371, 262144, 4, 786443, 262144, 4, 851979, 262144, 4)
+
+[node name="House1" type="Sprite2D" parent="BackgroundSprites"]
+position = Vector2(122, 141)
+texture = ExtResource("4_l5n2o")
+
+[node name="Tree1" type="Sprite2D" parent="BackgroundSprites"]
+position = Vector2(69, 183)
+texture = ExtResource("5_5smsf")
+
+[node name="Collisions" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions"]
+polygon = PackedVector2Array(294, 230, 380, 230, 379, 449, 703, 447, 703, 0, 763, 0, 763, 465, -45, 466, -44, -1, 23, -1, 23, 230)
+
+[node name="player" parent="." instance=ExtResource("6_gorbp")]
+position = Vector2(380, 198)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(253, 149)
+zoom = Vector2(2.5, 2.5)

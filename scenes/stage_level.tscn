@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dn562351fi4g6"]
+[gd_scene load_steps=11 format=3 uid="uid://dn562351fi4g6"]
 
 [ext_resource type="Script" path="res://scripts/stage_level.gd" id="1_l4e01"]
 [ext_resource type="Texture2D" uid="uid://c4gwr5tawn6a7" path="res://assets/Background/Background.png" id="1_raf8p"]
 [ext_resource type="Texture2D" uid="uid://bwe1njosbmwni" path="res://assets/Background/TileSet-36x36.png" id="2_jndwe"]
 [ext_resource type="PackedScene" uid="uid://djh8qxwiu2abp" path="res://scenes/player.tscn" id="3_1nle1"]
+[ext_resource type="PackedScene" uid="uid://dp31lisvfjgi6" path="res://scenes/bat_enemy.tscn" id="5_l3f77"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nipka"]
 texture = ExtResource("2_jndwe")
@@ -78,3 +79,16 @@ shape = SubResource("RectangleShape2D_l4beb")
 
 [node name="player" parent="." instance=ExtResource("3_1nle1")]
 position = Vector2(191, 169)
+
+[node name="BatEnemy" parent="." instance=ExtResource("5_l3f77")]
+position = Vector2(227, 170)
+
+[node name="BatEnemy2" parent="." instance=ExtResource("5_l3f77")]
+position = Vector2(154, 174)
+
+[node name="BatOnlyCollision" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BatOnlyCollision"]
+polygon = PackedVector2Array(26, 241, 92, 242, 121, 236, 155, 242, 184, 237, 222, 247, 273, 243, 308, 237, 360, 246, 412, 246, 445, 240, 487, 236, 523, 241, 542, 242, 578.949, 240.601, 617, 238, 662.541, 240.975, 688, 236, 725, 240, 757.415, 241.401, 800, 236, 846, 244, 891, 242, 894, 241, 885, 152, 892, 107, 886, 60, 881, 10, 894, -34, 777, -44, 678, -40, 550, -56, 387, -44, 253, -51, 148.076, -42.3699, 22, -32, 28, 26, 25, 64, 32, 114, 18, 160, 37, 192, 25, 238, -97, 223, -163, -71, 67, -187, 849, -185, 1133, -15, 1069, 307, 29, 413)

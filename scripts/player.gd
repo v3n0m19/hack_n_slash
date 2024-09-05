@@ -7,7 +7,7 @@ const JUMP_POWER = -350.0
 
 
 func _ready() -> void:
-	pass
+	Global.playerBody = self
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

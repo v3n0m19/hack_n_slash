@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dp31lisvfjgi6"]
+[gd_scene load_steps=31 format=3 uid="uid://dp31lisvfjgi6"]
 
 [ext_resource type="Script" path="res://scripts/bat_enemy.gd" id="1_wdd1b"]
 [ext_resource type="Texture2D" uid="uid://coambmnvjfo5b" path="res://assets/Enemies/Bat/Vampire/BatVampire_Attack.png" id="1_xkpjs"]
@@ -179,6 +179,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_rd4yr"]
 radius = 6.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qusxk"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q16wb"]
+radius = 8.0
+
 [node name="BatEnemy" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2
@@ -187,6 +193,8 @@ script = ExtResource("1_wdd1b")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bsyik")
 animation = &"fly"
+frame = 3
+frame_progress = 0.230053
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
@@ -195,4 +203,18 @@ shape = SubResource("CircleShape2D_rd4yr")
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="BatHitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BatHitBox"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_qusxk")
+
+[node name="BatDealDamage" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BatDealDamage"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_q16wb")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="BatHitBox" to="." method="_on_bat_hit_box_area_entered"]
+[connection signal="area_entered" from="BatDealDamage" to="." method="_on_bat_deal_damage_area_entered"]

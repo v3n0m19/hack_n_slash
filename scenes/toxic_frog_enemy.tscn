@@ -162,7 +162,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"deal_damage",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -209,9 +209,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7hxp2")
 }],
-"loop": true,
+"loop": false,
 "name": &"hurt",
-"speed": 4.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -283,7 +283,7 @@ script = ExtResource("1_mwdfq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_s2qtn")
-animation = &"death"
+animation = &"deal_damage"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)

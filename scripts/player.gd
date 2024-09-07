@@ -30,7 +30,9 @@ func _physics_process(delta: float) -> void:
 	weapon_equipped = Global.playerWeaponEquip 
 	Global.playerDamageZone = deal_damage_zone
 	Global.playerHitbox = player_hitbox
-	
+	if Global.moving_to_next_wave:
+		health = 100
+		Global.moving_to_next_wave = false
 	if not is_on_floor():
 		velocity += get_gravity() * delta #default is get_gravity()
 	
@@ -76,10 +78,11 @@ func take_damage(damage:int)->void:
 		health -= damage
 		print(health)
 		take_damage_cooldown(1.0)
-	elif health<=0:
-		health =0
-		dead = true
-		handle_death_animation()
+		if health<=0:
+			health =0
+			dead = true
+			velocity.x = 0
+			handle_death_animation()
 
 	
 func handle_death_animation() -> void:

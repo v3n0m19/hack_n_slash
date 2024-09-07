@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://djh8qxwiu2abp"]
+[gd_scene load_steps=65 format=3 uid="uid://djh8qxwiu2abp"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_khkjs"]
 [ext_resource type="Texture2D" uid="uid://bbcffa26jdwrb" path="res://assets/Hero/Dacian Warrior Animated Pixel-Art 2D/Attack/50x50/Attack 0-1 Sprite Sheet.png" id="1_tavx8"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bj4fgfj2evepo" path="res://assets/Hero/Dacian Warrior Animated Pixel-Art 2D/Fall/50x50/Fall 1 Sprite Sheet.png" id="7_o3vyf"]
 [ext_resource type="Texture2D" uid="uid://dp2k8gphjnqo4" path="res://assets/Hero/Dacian Warrior Animated Pixel-Art 2D/Idle/50x50/Idle Sprite 0.png" id="8_80alu"]
 [ext_resource type="Texture2D" uid="uid://c14lwjnt6cje7" path="res://assets/Hero/Dacian Warrior Animated Pixel-Art 2D/Run/50x50/Run Sprite 2.png" id="9_k101m"]
+[ext_resource type="PackedScene" uid="uid://ccs2n7oni34ju" path="res://scenes/health_bar.tscn" id="11_uju6c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_euonh"]
 atlas = ExtResource("1_tavx8")
@@ -449,5 +450,11 @@ disabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
 position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_sk7t2")
+
+[node name="Health_Bar" parent="." instance=ExtResource("11_uju6c")]
+offset_left = -10.0
+offset_top = 19.0
+offset_right = 10.0
+offset_bottom = 24.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

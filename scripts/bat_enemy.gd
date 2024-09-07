@@ -12,8 +12,9 @@ var health_min: int = 0
 var dead: bool = false
 var taking_damage: bool = false
 var is_roaming: bool
-var damage_to_deal:int = 10
+var damage_to_deal:int = 5
 var player_hit:bool
+var points_for_kill = 100
 
 
 
@@ -29,7 +30,8 @@ func _physics_process(delta: float) -> void:
 		is_bat_chase = false
 	
 	if is_on_floor() and dead:
-		await get_tree().create_timer(3.0).timeout
+		await get_tree().create_timer(0.5).timeout
+		Global.current_score += points_for_kill
 		self.queue_free()
 	move(delta)
 	handle_animations()

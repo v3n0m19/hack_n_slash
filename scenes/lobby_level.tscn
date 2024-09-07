@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dgpq6p6jv11se"]
+[gd_scene load_steps=17 format=3 uid="uid://dgpq6p6jv11se"]
 
 [ext_resource type="Script" path="res://scripts/lobby_level.gd" id="1_h6o38"]
 [ext_resource type="Texture2D" uid="uid://c4gwr5tawn6a7" path="res://assets/Background/Background.png" id="1_lgrdr"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://c5n15m8wmqmnx" path="res://assets/Background/Tree1.png" id="5_5smsf"]
 [ext_resource type="PackedScene" uid="uid://djh8qxwiu2abp" path="res://scenes/player.tscn" id="6_gorbp"]
 [ext_resource type="PackedScene" uid="uid://c01nhumlaeai3" path="res://scenes/scene_transition_animation.tscn" id="8_bil5x"]
+[ext_resource type="FontFile" uid="uid://ctatb7busjbrp" path="res://assets/fonts/PixelOperator8.ttf" id="9_wd41n"]
+[ext_resource type="Script" path="res://scripts/high_score_label.gd" id="10_vlmg2"]
+[ext_resource type="Script" path="res://scripts/previous_score_label.gd" id="11_qcagv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_58pk4"]
 texture = ExtResource("2_wimvt")
@@ -90,7 +93,7 @@ layer_1/tile_data = PackedInt32Array(851980, 65536, 2, 720909, 131072, 0, 786445
 [node name="GroundTileMap" type="TileMap" parent="BackgroundSprites"]
 tile_set = SubResource("TileSet_nbqlu")
 format = 2
-layer_0/tile_data = PackedInt32Array(524287, 65536, 1, 458752, 131072, 1, 458753, 196608, 1, 458756, 131072, 1, 458757, 131072, 1, 458754, 131072, 1, 458755, 196608, 1, 458758, 196608, 1, 458759, 131072, 1, 458760, 196608, 1, 458761, 196608, 1, 589823, 65536, 3, 786431, 65536, 3, 655359, 65536, 2, 720895, 65536, 2, 458762, 131072, 1, 851967, 65536, 2, 917503, 65536, 3, 524288, 196608, 2, 524289, 196608, 2, 589824, 196608, 2, 589825, 131072, 2, 589826, 196608, 2, 589827, 196608, 2, 589828, 196608, 2, 589829, 196608, 2, 655364, 196608, 2, 655365, 131072, 2, 524290, 196608, 2, 524291, 196608, 2, 524292, 196608, 2, 524293, 196608, 2, 524294, 196608, 2, 524295, 196608, 2, 524296, 196608, 2, 524297, 196608, 2, 589832, 196608, 2, 589833, 196608, 2, 589834, 196608, 2, 524298, 196608, 2, 655369, 131072, 2, 655370, 196608, 2, 655367, 196608, 2, 655368, 196608, 2, 589830, 196608, 2, 589831, 196608, 2, 655366, 131072, 2, 655363, 196608, 2, 655361, 196608, 2, 655362, 196608, 2, 720897, 131072, 2, 720898, 196608, 2, 786433, 131072, 2, 786434, 196608, 2, 851969, 196608, 2, 851970, 131072, 2, 851971, 196608, 2, 851972, 196608, 2, 786435, 196608, 2, 786436, 196608, 2, 786437, 196608, 2, 786438, 131072, 2, 720901, 196608, 2, 720902, 196608, 2, 720899, 196608, 2, 720900, 196608, 2, 720903, 196608, 2, 720904, 196608, 2, 720905, 131072, 2, 720906, 196608, 2, 851977, 196608, 2, 851978, 196608, 2, 851975, 196608, 2, 851976, 196608, 2, 786439, 131072, 2, 786440, 196608, 2, 786441, 196608, 2, 786442, 196608, 2, 851973, 196608, 2, 851974, 196608, 2, 655360, 196608, 2, 720896, 196608, 2, 786432, 196608, 2, 851968, 196608, 2, 393217, 327680, 1, 393218, 327680, 1, 327682, 393216, 1, 393224, 327680, 1, 327688, 393216, 1, 458763, 262144, 1, 524299, 262144, 2, 589835, 262144, 2, 720907, 262144, 2, 655371, 262144, 4, 786443, 262144, 4, 851979, 262144, 4)
+layer_0/tile_data = PackedInt32Array(524287, 65536, 1, 458752, 131072, 1, 458753, 196608, 1, 458756, 131072, 1, 458757, 131072, 1, 458754, 131072, 1, 458755, 131072, 1, 458758, 196608, 1, 458759, 131072, 1, 458760, 196608, 1, 458761, 196608, 1, 589823, 65536, 3, 786431, 65536, 3, 655359, 65536, 2, 720895, 65536, 2, 458762, 131072, 1, 851967, 65536, 2, 917503, 65536, 3, 524288, 196608, 2, 524289, 196608, 2, 589824, 196608, 2, 589825, 131072, 2, 589826, 196608, 2, 589827, 196608, 2, 589828, 196608, 2, 589829, 196608, 2, 655364, 196608, 2, 655365, 131072, 2, 524290, 196608, 2, 524291, 196608, 2, 524292, 196608, 2, 524293, 196608, 2, 524294, 196608, 2, 524295, 196608, 2, 524296, 196608, 2, 524297, 196608, 2, 589832, 196608, 2, 589833, 196608, 2, 589834, 196608, 2, 524298, 196608, 2, 655369, 131072, 2, 655370, 196608, 2, 655367, 196608, 2, 655368, 196608, 2, 589830, 196608, 2, 589831, 196608, 2, 655366, 131072, 2, 655363, 196608, 2, 655361, 196608, 2, 655362, 196608, 2, 720897, 131072, 2, 720898, 196608, 2, 786433, 131072, 2, 786434, 196608, 2, 851969, 196608, 2, 851970, 131072, 2, 851971, 196608, 2, 851972, 196608, 2, 786435, 196608, 2, 786436, 196608, 2, 786437, 196608, 2, 786438, 131072, 2, 720901, 196608, 2, 720902, 196608, 2, 720899, 196608, 2, 720900, 196608, 2, 720903, 196608, 2, 720904, 196608, 2, 720905, 131072, 2, 720906, 196608, 2, 851977, 196608, 2, 851978, 196608, 2, 851975, 196608, 2, 851976, 196608, 2, 786439, 131072, 2, 786440, 196608, 2, 786441, 196608, 2, 786442, 196608, 2, 851973, 196608, 2, 851974, 196608, 2, 655360, 196608, 2, 720896, 196608, 2, 786432, 196608, 2, 851968, 196608, 2, 393217, 327680, 1, 393218, 327680, 1, 327682, 393216, 1, 393224, 327680, 1, 327688, 327680, 1, 458763, 262144, 1, 524299, 262144, 2, 589835, 262144, 2, 720907, 262144, 2, 655371, 262144, 4, 786443, 262144, 4, 851979, 262144, 4, 393223, 327680, 1)
 
 [node name="House1" type="Sprite2D" parent="BackgroundSprites"]
 position = Vector2(122, 141)
@@ -120,5 +123,27 @@ shape = SubResource("RectangleShape2D_m0sv0")
 
 [node name="SceneTransitionAnimation" parent="." instance=ExtResource("8_bil5x")]
 position = Vector2(149, 155)
+
+[node name="ScoreLabels" type="StaticBody2D" parent="."]
+
+[node name="highScoreLabel" type="RichTextLabel" parent="ScoreLabels"]
+offset_left = 235.0
+offset_top = 111.0
+offset_right = 348.0
+offset_bottom = 145.0
+theme_override_fonts/normal_font = ExtResource("9_wd41n")
+theme_override_font_sizes/normal_font_size = 8
+text = "High Score : 9999"
+script = ExtResource("10_vlmg2")
+
+[node name="previousScoreLabel" type="RichTextLabel" parent="ScoreLabels"]
+offset_left = 235.0
+offset_top = 121.0
+offset_right = 376.0
+offset_bottom = 148.0
+theme_override_fonts/normal_font = ExtResource("9_wd41n")
+theme_override_font_sizes/normal_font_size = 8
+text = "Previous Score : 9999"
+script = ExtResource("11_qcagv")
 
 [connection signal="body_entered" from="StartGameDetection" to="." method="_on_start_game_detection_body_entered"]

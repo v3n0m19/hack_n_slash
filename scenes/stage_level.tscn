@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dn562351fi4g6"]
+[gd_scene load_steps=16 format=3 uid="uid://dn562351fi4g6"]
 
 [ext_resource type="Script" path="res://scripts/stage_level.gd" id="1_l4e01"]
 [ext_resource type="Texture2D" uid="uid://c4gwr5tawn6a7" path="res://assets/Background/Background.png" id="1_raf8p"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://dp31lisvfjgi6" path="res://scenes/bat_enemy.tscn" id="5_l3f77"]
 [ext_resource type="PackedScene" uid="uid://c01nhumlaeai3" path="res://scenes/scene_transition_animation.tscn" id="6_04eiq"]
 [ext_resource type="PackedScene" uid="uid://j48w5bhgi55f" path="res://scenes/toxic_frog_enemy.tscn" id="6_ktkeb"]
+[ext_resource type="FontFile" uid="uid://ctatb7busjbrp" path="res://assets/fonts/PixelOperator8.ttf" id="8_qv23e"]
+[ext_resource type="Script" path="res://scripts/current_score_label.gd" id="9_6inwr"]
+[ext_resource type="Script" path="res://scripts/current_wave_label.gd" id="10_77iyq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nipka"]
 texture = ExtResource("2_jndwe")
@@ -52,6 +55,8 @@ size = Vector2(20, 318)
 
 [node name="StageLevel" type="Node2D"]
 script = ExtResource("1_l4e01")
+bat_scene = ExtResource("5_l3f77")
+frog_scene = ExtResource("6_ktkeb")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(459, 122)
@@ -82,15 +87,6 @@ shape = SubResource("RectangleShape2D_l4beb")
 [node name="player" parent="." instance=ExtResource("3_1nle1")]
 position = Vector2(90, 76)
 
-[node name="BatEnemy" parent="." instance=ExtResource("5_l3f77")]
-position = Vector2(227, 170)
-
-[node name="BatEnemy2" parent="." instance=ExtResource("5_l3f77")]
-position = Vector2(154, 174)
-
-[node name="toxicFrogEnemy" parent="." instance=ExtResource("6_ktkeb")]
-position = Vector2(176, 135)
-
 [node name="BatOnlyCollision" type="StaticBody2D" parent="."]
 collision_layer = 2
 collision_mask = 2
@@ -100,3 +96,43 @@ position = Vector2(-2, 11)
 polygon = PackedVector2Array(26, 241, 87, 237, 121, 236, 155, 242, 184, 237, 220, 240, 269, 238, 308, 237, 360, 241, 409, 243, 445, 240, 487, 236, 523, 241, 542, 242, 578.949, 240.601, 617, 238, 662.541, 240.975, 688, 236, 725, 240, 757.415, 241.401, 800, 236, 846, 241, 891, 242, 894, 241, 885, 152, 892, 107, 886, 60, 881, 10, 894, -34, 777, -44, 678, -40, 550, -56, 387, -44, 253, -51, 148.076, -42.3699, 22, -32, 28, 26, 25, 64, 32, 114, 18, 160, 37, 192, 25, 238, -97, 223, -163, -71, 67, -187, 849, -185, 1133, -15, 1069, 307, 29, 413)
 
 [node name="SceneTransitionAnimation" parent="." instance=ExtResource("6_04eiq")]
+
+[node name="BatSpawnPoint1" type="Marker2D" parent="."]
+position = Vector2(216, 3)
+
+[node name="BatSpawnPoint2" type="Marker2D" parent="."]
+position = Vector2(359, 1)
+
+[node name="BatSpawnPoint3" type="Marker2D" parent="."]
+position = Vector2(579, 1)
+
+[node name="BatSpawnPoint4" type="Marker2D" parent="."]
+position = Vector2(724, -1)
+
+[node name="FrogSpawnPoint1" type="Marker2D" parent="."]
+position = Vector2(39, 203)
+
+[node name="FrogSpawnPoint2" type="Marker2D" parent="."]
+position = Vector2(601, 201)
+
+[node name="ScoreLabels" type="StaticBody2D" parent="."]
+
+[node name="currentScoreLabel" type="RichTextLabel" parent="ScoreLabels"]
+offset_left = 34.0
+offset_top = 278.0
+offset_right = 160.0
+offset_bottom = 312.0
+theme_override_fonts/normal_font = ExtResource("8_qv23e")
+theme_override_font_sizes/normal_font_size = 8
+text = "Current Score:9999"
+script = ExtResource("9_6inwr")
+
+[node name="currentWaveLabel" type="RichTextLabel" parent="ScoreLabels"]
+offset_left = 34.0
+offset_top = 288.0
+offset_right = 273.0
+offset_bottom = 328.0
+theme_override_fonts/normal_font = ExtResource("8_qv23e")
+theme_override_font_sizes/normal_font_size = 8
+text = "Current Wave : 999"
+script = ExtResource("10_77iyq")

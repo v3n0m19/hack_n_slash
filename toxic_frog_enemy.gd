@@ -10,8 +10,9 @@ const health_min = 0
 var is_frog_chase: bool = true
 var dead: bool = false
 var taking_damage: bool = false
-var damage_to_deal:int  = 20
+var damage_to_deal:int  = 10
 var is_dealing_damage:bool =  false
+var points_for_kill = 250
 
 var dir: Vector2
 var knockback_force = -50
@@ -69,8 +70,11 @@ func handle_animations() -> void :
 		handle_death()
 	elif !dead and is_dealing_damage:
 		animated_sprite.play("deal_damage")
+		await get_tree().create_timer(1).timeout
+
 		
 func handle_death()-> void:
+	Global.current_score += points_for_kill
 	self.queue_free()
 	
 func _on_direction_timer_timeout() -> void:

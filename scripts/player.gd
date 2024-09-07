@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var deal_damage_zone: Area2D = $DealDamageZone
 @onready var player_hitbox: Area2D = $PlayerHitbox
@@ -64,6 +66,8 @@ func check_hitbox():
 		var hitbox =  hitbox_areas.front()
 		if hitbox.get_parent() is BatEnemy:
 			damage = Global.batDamageDealt
+		if hitbox.get_parent() is FrogEnemy:
+			damage = Global.frogDamageDealt
 	if (can_take_damage and damage != 0):
 		take_damage(damage)
 		
@@ -72,11 +76,11 @@ func take_damage(damage:int)->void:
 		health -= damage
 		print(health)
 		take_damage_cooldown(1.0)
-	if health<=0:
+	elif health<=0:
 		health =0
 		dead = true
-		Global.playerAlive = false
 		handle_death_animation()
+
 	
 func handle_death_animation() -> void:
 	$CollisionShape2D.position.y =5
@@ -85,6 +89,8 @@ func handle_death_animation() -> void:
 	$Camera2D.zoom.x =4
 	$Camera2D.zoom.y=4
 	await get_tree().create_timer(3.5).timeout
+	Global.playerAlive = false
+	await get_tree().create_timer(0.5).timeout
 	self.queue_free()
 	
 func handle_attack_animations(attack_type: String) -> void:

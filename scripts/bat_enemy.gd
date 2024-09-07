@@ -12,7 +12,7 @@ var health_min: int = 0
 var dead: bool = false
 var taking_damage: bool = false
 var is_roaming: bool
-var damage_to_deal:int = 20
+var damage_to_deal:int = 10
 var player_hit:bool
 
 
@@ -72,8 +72,13 @@ func _on_timer_timeout() -> void:
 
 func handle_animations() -> void:
 	var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+	
+	var distance = position.distance_to(player.position) if Global.playerAlive == true else 50
 
-	if !dead and !taking_damage:
+	if !dead and !taking_damage and is_bat_chase and distance < 30:
+		animated_sprite.play("attack")
+		await get_tree().create_timer(0.8).timeout
+	elif !dead and !taking_damage:
 		animated_sprite.play("fly")
 		animated_sprite.flip_h = true if dir.x == -1 else false
 	elif !dead and taking_damage:
@@ -83,13 +88,14 @@ func handle_animations() -> void:
 	elif dead and is_roaming:
 		is_roaming =false
 		animated_sprite.play("death")
-		Global.batDamageZone.get_node("CollisionShape2D").disabled = true
 		set_collision_layer_value(1, true)
 		set_collision_layer_value(2, false)
 		set_collision_mask_value(1, true)
 		set_collision_mask_value(2, false)
 		
 
+	
+	
 func choose(array):
 	array.shuffle()
 	return array.front()
@@ -105,8 +111,6 @@ func _on_bat_hit_box_area_entered(area: Area2D) -> void:
 	if area == Global.playerDamageZone:
 		var damage = Global.playerDamageDealt
 		take_damage(damage)
-
-	
 
 
 func _on_bat_deal_damage_area_entered(area: Area2D) -> void:

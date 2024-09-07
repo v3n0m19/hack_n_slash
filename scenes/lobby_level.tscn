@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgpq6p6jv11se"]
+[gd_scene load_steps=14 format=3 uid="uid://dgpq6p6jv11se"]
 
 [ext_resource type="Script" path="res://scripts/lobby_level.gd" id="1_h6o38"]
 [ext_resource type="Texture2D" uid="uid://c4gwr5tawn6a7" path="res://assets/Background/Background.png" id="1_lgrdr"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c6i4pfj8nwym7" path="res://assets/Background/House1.png" id="4_l5n2o"]
 [ext_resource type="Texture2D" uid="uid://c5n15m8wmqmnx" path="res://assets/Background/Tree1.png" id="5_5smsf"]
 [ext_resource type="PackedScene" uid="uid://djh8qxwiu2abp" path="res://scenes/player.tscn" id="6_gorbp"]
+[ext_resource type="PackedScene" uid="uid://c01nhumlaeai3" path="res://scenes/scene_transition_animation.tscn" id="8_bil5x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_58pk4"]
 texture = ExtResource("2_wimvt")
@@ -66,14 +67,17 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_1m3gl")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m0sv0"]
+size = Vector2(320, 21)
+
 [node name="LobbyLevel" type="Node2D"]
 script = ExtResource("1_h6o38")
 
 [node name="BackgroundSprites" type="StaticBody2D" parent="."]
 
 [node name="Background" type="Sprite2D" parent="BackgroundSprites"]
-position = Vector2(335, 227)
-scale = Vector2(2.03421, 1.948)
+position = Vector2(281.125, 229.625)
+scale = Vector2(2.49539, 2.461)
 texture = ExtResource("1_lgrdr")
 
 [node name="BushTileMap" type="TileMap" parent="BackgroundSprites"]
@@ -102,8 +106,19 @@ texture = ExtResource("5_5smsf")
 polygon = PackedVector2Array(294, 230, 380, 230, 379, 449, 703, 447, 703, 0, 763, 0, 763, 465, -45, 466, -44, -1, 23, -1, 23, 230)
 
 [node name="player" parent="." instance=ExtResource("6_gorbp")]
-position = Vector2(380, 198)
+position = Vector2(149, 155)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(253, 149)
 zoom = Vector2(2.5, 2.5)
+
+[node name="StartGameDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartGameDetection"]
+position = Vector2(542, 306)
+shape = SubResource("RectangleShape2D_m0sv0")
+
+[node name="SceneTransitionAnimation" parent="." instance=ExtResource("8_bil5x")]
+position = Vector2(149, 155)
+
+[connection signal="body_entered" from="StartGameDetection" to="." method="_on_start_game_detection_body_entered"]
